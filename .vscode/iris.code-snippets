@@ -1,0 +1,135 @@
+{
+	"Intersystems Method": {
+		"scope": "objectscript-class",
+		"prefix": "Method",
+		"body": [
+			"Method ${1:MethodName}(${2:args}) As ${3:%String} {",
+			"    ${0:// method body}",
+			"}"
+		],
+		"description": "Create a new Intersystems method"
+	},
+	"Try Catch": {
+		"scope": "objectscript-class,objectscript",
+		"prefix": "Try",
+		"body": [
+			"Try",
+			"{",
+			"    ${TM_SELECTED_TEXT}$0",
+			"}",
+			"Catch (exception)",
+			"{",
+			"    Return exception.AsStatus()",
+			"}"
+		],
+		"description": "Create a new Try Catch block"
+	},
+	"Message Map": {
+		"scope": "objectscript-class",
+		"prefix": "MessageMap",
+		"body": [
+			"XData MessageMap",
+			"{",
+			"<MapItems>",
+			"    <MapItem MessageType=\"${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.$0.Request\">",
+			"        <Method>$0</Method>",
+			"    </MapItem>",
+			"</MapItems>",
+			"}"
+		],
+		"description": "Create a Message Map"
+	},
+	"Message Map Item": {
+		"scope": "xml",
+		"prefix": "MapItem",
+		"body": [
+			"<MapItem MessageType=\"${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.$0.Request\">",
+			"    <Method>$0</Method>",
+			"</MapItem>",
+		],
+		"description": "Create a Message Map Item"
+	},
+	"On Request": {
+		"scope": "objectscript-class",
+		"prefix": "OnRequest",
+		"body": [
+			"Method OnRequest(pRequest As ${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.Request, Output pResponse As ${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.Response) As %Library.Status",
+			"{",
+			"    $0",
+			"}"
+		],
+		"description": "Creates the OnRequest method"
+	},
+	"On Process Input": {
+		"scope": "objectscript-class",
+		"prefix": "OnProcessInput",
+		"body": [
+			"Method OnProcessInput(pInput As ${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.Request, Output pOutput As ${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.Response) As %Library.Status",
+			"{",
+			"    $0",
+			"}"
+		],
+		"description": "Creates the OnProcessInput method"
+	},
+	"Url Map": {
+		"scope": "objectscript-class",
+		"prefix": "UrlMap",
+		"body": [
+			"XData UrlMap",
+			"{",
+			"<Routes>",
+			"    <Route Url=\"/$0\" Method=\"POST\" Call=\"$0\"/>",
+			"</Routes>",
+			"}"
+		],
+		"description": "Create a Url Map"
+	},
+	"Url Map Route": {
+		"scope": "xml",
+		"prefix": "Route",
+		"body": [
+			"<Route Url=\"/$0\" Method=\"POST\" Call=\"$0\"/>",
+		],
+		"description": "Create a Url Map Route"
+	},
+	"Url Map Route Get": {
+		"scope": "xml",
+		"prefix": "RouteGet",
+		"body": [
+			"<Route Url=\"/$0\" Method=\"GET\" Call=\"Get$0\"/>",
+		],
+		"description": "Create a Url Map Route with a GET Method"
+	},
+	"Url Map Route Post": {
+		"scope": "xml",
+		"prefix": "RoutePost",
+		"body": [
+			"<Route Url=\"/$0\" Method=\"POST\" Call=\"Post$0\"/>",
+		],
+		"description": "Create a Url Map Route with a POST Method"
+	},
+	"Url Map Route Put": {
+		"scope": "xml",
+		"prefix": "RoutePut",
+		"body": [
+			"<Route Url=\"/$0\" Method=\"PUT\" Call=\"Put$0\"/>",
+		],
+		"description": "Create a Url Map Route with a PUT Method"
+	},
+	"Url Map Route Patch": {
+		"scope": "xml",
+		"prefix": "RoutePatch",
+		"body": [
+			"<Route Url=\"/$0\" Method=\"PATCH\" Call=\"Patch$0\"/>",
+		],
+		"description": "Create a Url Map Route with a PATCH Method"
+	},
+	"Url Map Route Delete": {
+		"scope": "xml",
+		"prefix": "RouteDelete",
+		"body": [
+			"<Route Url=\"/$0\" Method=\"DELETE\" Call=\"Delete$0\"/>",
+		],
+		"description": "Create a Url Map Route with a DELETE Method"
+	},
+}

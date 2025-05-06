@@ -1,0 +1,128 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"intersystems.testingManager.client.relativeTestRoot": "src/internal/test",
+		"editor.formatOnSave": true,
+		"editor.detectIndentation": false,
+		"git.confirmSync": true,
+		"git.autofetch": true,
+		"git.confirmForcePush": true,
+		"git.pruneOnFetch": true,
+		"git.fetchOnPull": true,
+		"git.branchProtectionPrompt": "alwaysPrompt",
+		"git.branchProtection": [
+			"main",
+			"hom"
+		],
+		"branchwarnings.protectedBranches": [
+			"main",
+			"hom"
+		],
+		"github.branchProtection": true,
+		"[objectscript-class]": {
+			"editor.defaultFormatter": "intersystems.language-server"
+		},
+		"intersystems.language-server.diagnostics.classes": true,
+		"intersystems.language-server.diagnostics.deprecation": true,
+		"intersystems.language-server.diagnostics.parameters": true,
+		"intersystems.language-server.diagnostics.routines": true,
+		"intersystems.language-server.diagnostics.zutil": true,
+		"intersystems.language-server.formatting.commands.case": "word",
+		"intersystems.language-server.formatting.commands.length": "long",
+		"intersystems.language-server.formatting.expandClassNames": true,
+		"intersystems.language-server.formatting.system.case": "upper",
+		"intersystems.language-server.formatting.system.length": "long",
+		"intersystems.language-server.hover.commands": true,
+		"intersystems.language-server.hover.preprocessor": true,
+		"intersystems.language-server.hover.system": true,
+		"intersystems.language-server.refactor.exceptionVariable": "exception",
+		"intersystems.language-server.signaturehelp.documentation": true,
+		"intersystems.language-server.suggestTheme": false,
+		"intersystems.language-server.trace.server": "off",
+		"editor.tabCompletion": "on"
+	},
+	"extensions": {
+		"recommendations": [
+			"intersystems-community.servermanager",
+			"intersystems-community.objectscript-pack",
+			"intersystems-community.vscode-objectscript",
+			"intersystems-community.testingmanager",
+			"intersystems-community.sqltools-intersystems-driver",
+			"intersystems.language-server",
+			"eamodio.gitlens",
+			"mhutchie.git-graph",
+			"teledemic.branch-warnings",
+			"dracula-theme.theme-dracula",
+			"aaron-bond.better-comments",
+			"editorconfig.editorconfig",
+			"mtxr.sqltools",
+			"github.vscode-pull-request-github",
+			"cardinal90.multi-cursor-case-preserve"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "objectscript",
+				"request": "launch",
+				"name": "ObjectScript Debug Class",
+				"program": "##class(PackageSample.ObjectScript).Test()"
+			},
+			{
+				"type": "objectscript",
+				"request": "attach",
+				"name": "ObjectScript Attach",
+				"processId": "${command:PickProcess}",
+				"system": true
+			},
+			{
+				"type": "objectscript",
+				"request": "launch",
+				"name": "ObjectScript Debug Routine",
+				"program": "TestInsuranceCategories^linker.Debug()"
+			}
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Docker Dev Up",
+				"type": "shell",
+				"command": "docker",
+				"args": [
+					"compose",
+					"-f",
+					"docker-compose.yml",
+					"up",
+				],
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				}
+			},
+			{
+				"label": "Docker Dev Down",
+				"type": "shell",
+				"command": "docker",
+				"args": [
+					"compose",
+					"-f",
+					"docker-compose.yml",
+					"down",
+				],
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": false
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,18 @@
+name: iris-workshop-python
+volumes:
+  iris-data:
+services:
+  iris-workshop-python:
+    image: containers.intersystems.com/intersystems/iris-community:2024.2
+    container_name: iris-workshop-python
+    hostname: iris-workshop-python
+    volumes:
+      - iris-workshop-python-data:/usr/irissys
+      - ./iris/db:/db
+      - ./iris/backup:/backup
+      - ./iris/config:/config
+    ports:
+      - 52773:52773
+      - 51773:51773
+      - 1972:1972
+    restart: unless-stopped
