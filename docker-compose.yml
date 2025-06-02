@@ -3,7 +3,7 @@ volumes:
   iris-data:
 services:
   iris-workshop-python:
-    image: containers.intersystems.com/intersystems/iris-community:2024.2
+    image: containers.intersystems.com/intersystems/iris-community:2025.1
     container_name: iris-workshop-python
     hostname: iris-workshop-python
     volumes:
