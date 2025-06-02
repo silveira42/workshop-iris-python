@@ -1,6 +1,7 @@
 name: iris-workshop-python
 volumes:
-  iris-data:
+  iris-workshop-python-data:
+    driver: local
 services:
   iris-workshop-python:
     image: containers.intersystems.com/intersystems/iris-community:2025.1
@@ -12,7 +13,8 @@ services:
       - ./iris/backup:/backup
       - ./iris/config:/config
     ports:
-      - 52773:52773
-      - 51773:51773
-      - 1972:1972
+      - 52777:52773
+      - 51777:51773
+      - 1977:1972
     restart: unless-stopped
+    entrypoint: [ "bash", "-c", "chown "]

@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"path": "."
 		}
 	],
 	"settings": {
@@ -108,6 +108,26 @@
 				}
 			},
 			{
+				"label": "Docker Give Permissions",
+				"type": "shell",
+				"command": "docker",
+				"args": [
+					"exec",
+					"-u",
+					"0",
+					"iris-workshop-python",
+					"chown",
+					"-R",
+					"irisowner",
+					"/db",
+				],
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				}
+			},
+			{
 				"label": "Docker Dev Down",
 				"type": "shell",
 				"command": "docker",
@@ -116,6 +136,28 @@
 					"-f",
 					"docker-compose.yml",
 					"down",
+				],
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": false
+				}
+			},
+			{
+				"label": "Update Python Packages",
+				"type": "shell",
+				"command": "docker", // docker exec iris-workshop-python python3 -m pip install --target /usr/irissys/mgr/python -r /config/requirements.txt
+				"args": [
+					"exec",
+					"iris-workshop-python",
+					"python3",
+					"-m",
+					"pip",
+					"install",
+					"--target",
+					"/usr/irissys/mgr/python",
+					"-r",
+					"/config/requirements.txt",
 				],
 				"problemMatcher": [],
 				"group": {
