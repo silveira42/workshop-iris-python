@@ -17,4 +17,3 @@ services:
       - 51777:51773
       - 1977:1972
     restart: unless-stopped
-    entrypoint: [ "bash", "-c", "chown "]
