@@ -1,14 +1,4 @@
 {
-	"Intersystems Method": {
-		"scope": "objectscript-class",
-		"prefix": "Method",
-		"body": [
-			"Method ${1:MethodName}(${2:args}) As ${3:%String} {",
-			"    ${0:// method body}",
-			"}"
-		],
-		"description": "Create a new Intersystems method"
-	},
 	"Try Catch": {
 		"scope": "objectscript-class,objectscript",
 		"prefix": "Try",
@@ -31,8 +21,8 @@
 			"XData MessageMap",
 			"{",
 			"<MapItems>",
-			"    <MapItem MessageType=\"${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.$0.Request\">",
-			"        <Method>$0</Method>",
+			"    <MapItem MessageType=\"${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.${0:method}.Request\">",
+			"        <Method>${0:Method}</Method>",
 			"    </MapItem>",
 			"</MapItems>",
 			"}"
@@ -43,8 +33,8 @@
 		"scope": "xml",
 		"prefix": "MapItem",
 		"body": [
-			"<MapItem MessageType=\"${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.$0.Request\">",
-			"    <Method>$0</Method>",
+			"<MapItem MessageType=\"${TM_DIRECTORY/.*src\\/(([^\\/]*)(\\/)?)|(\\/)([^\\/]*)/$2${3:+.}${5:+.}$5/g}.${0:method}.Request\">",
+			"    <Method>${0:Method}</Method>",
 			"</MapItem>",
 		],
 		"description": "Create a Message Map Item"
@@ -78,7 +68,7 @@
 			"XData UrlMap",
 			"{",
 			"<Routes>",
-			"    <Route Url=\"/$0\" Method=\"POST\" Call=\"$0\"/>",
+			"    <Route Url=\"/${0:method}\" Method=\"POST\" Call=\"${0:method}\"/>",
 			"</Routes>",
 			"}"
 		],
@@ -88,7 +78,7 @@
 		"scope": "xml",
 		"prefix": "Route",
 		"body": [
-			"<Route Url=\"/$0\" Method=\"POST\" Call=\"$0\"/>",
+			"<Route Url=\"/${0:method}\" Method=\"POST\" Call=\"${0:Method}\"/>",
 		],
 		"description": "Create a Url Map Route"
 	},
@@ -96,7 +86,7 @@
 		"scope": "xml",
 		"prefix": "RouteGet",
 		"body": [
-			"<Route Url=\"/$0\" Method=\"GET\" Call=\"Get$0\"/>",
+			"<Route Url=\"/${0:method}\" Method=\"GET\" Call=\"Get${0:method}\"/>",
 		],
 		"description": "Create a Url Map Route with a GET Method"
 	},
@@ -104,7 +94,7 @@
 		"scope": "xml",
 		"prefix": "RoutePost",
 		"body": [
-			"<Route Url=\"/$0\" Method=\"POST\" Call=\"Post$0\"/>",
+			"<Route Url=\"/${0:method}\" Method=\"POST\" Call=\"Post${0:method}\"/>",
 		],
 		"description": "Create a Url Map Route with a POST Method"
 	},
@@ -112,7 +102,7 @@
 		"scope": "xml",
 		"prefix": "RoutePut",
 		"body": [
-			"<Route Url=\"/$0\" Method=\"PUT\" Call=\"Put$0\"/>",
+			"<Route Url=\"/${0:method}\" Method=\"PUT\" Call=\"Put${0:method}\"/>",
 		],
 		"description": "Create a Url Map Route with a PUT Method"
 	},
@@ -120,7 +110,7 @@
 		"scope": "xml",
 		"prefix": "RoutePatch",
 		"body": [
-			"<Route Url=\"/$0\" Method=\"PATCH\" Call=\"Patch$0\"/>",
+			"<Route Url=\"/${0:method}\" Method=\"PATCH\" Call=\"Patch${0:method}\"/>",
 		],
 		"description": "Create a Url Map Route with a PATCH Method"
 	},
@@ -128,7 +118,7 @@
 		"scope": "xml",
 		"prefix": "RouteDelete",
 		"body": [
-			"<Route Url=\"/$0\" Method=\"DELETE\" Call=\"Delete$0\"/>",
+			"<Route Url=\"/${0:method}\" Method=\"DELETE\" Call=\"Delete${0:method}\"/>",
 		],
 		"description": "Create a Url Map Route with a DELETE Method"
 	},

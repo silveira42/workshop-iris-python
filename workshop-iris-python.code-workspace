@@ -146,7 +146,7 @@
 			{
 				"label": "Update Python Packages",
 				"type": "shell",
-				"command": "docker", // docker exec iris-workshop-python python3 -m pip install --target /usr/irissys/mgr/python -r /config/requirements.txt
+				"command": "docker",
 				"args": [
 					"exec",
 					"iris-workshop-python",
