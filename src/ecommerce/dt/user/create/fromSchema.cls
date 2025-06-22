@@ -11,7 +11,7 @@ ClassMethod Transform(pSource As ecommerce.schema.UserCreate, Output pTarget As 
 		Set target.Name = source.Name
 		Set target.Email = source.Email
 		Set target.Phone = source.Phone
-		Set target.Address = source.PostalCode
+		Set target.Address = ..GetAddress(source.PostalCode)
 
 		Set pTarget = target
 
@@ -21,6 +21,15 @@ ClassMethod Transform(pSource As ecommerce.schema.UserCreate, Output pTarget As 
 	{
 		Return exception.AsStatus()
 	}
+}
+
+ClassMethod GetAddress(postalCode As %Library.String) As %Library.String [ Language = python ]
+{
+	import brazilcep
+
+	address = brazilcep.get_address_from_cep(postalCode)
+
+	return address["street"] + " - " + address["district"] + ", " + address["city"] + " - " + address["uf"] + ", " + address["cep"]
 }
 
 }

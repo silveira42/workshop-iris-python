@@ -14,6 +14,17 @@ Method OnProcessInput(pInput As ecommerce.bs.product.get.Request, Output pOutput
 		$$$ThrowOnError(..SendRequestSync("Ecommerce Product Get", bpRequest, .bpResponse))
 		#Dim bpResponse As ecommerce.bp.product.get.Response
 
+		Set translate = ##class(%SYS.Python).Import("translate")
+		Set translator = translate.Translator(pInput.Lang)
+		Set translation = translator.translate(bpResponse.Product.Description)
+
+		If (translation [ "IS AN INVALID TARGET LANGUAGE")
+		{
+			Throw ##class(%Exception.General).%New("Invalid target language (" _ pInput.Lang _ ") for translation.", 400)
+		}
+
+		Set bpResponse.Product.Description = translation
+
 		Set pOutput.Product = bpResponse.Product
 	}
 	Catch (exception)

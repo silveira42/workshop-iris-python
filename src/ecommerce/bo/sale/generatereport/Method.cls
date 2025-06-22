@@ -24,26 +24,28 @@ ClassMethod Execute(pHost As ecommerce.bo.sale.Operation, pRequest As ecommerce.
 	Return $$$OK
 }
 
-ClassMethod GenerateReport(pInitialDate As %Library.String, pFinalDate As %Library.String) As ecommerce.model.SalesReport
+ClassMethod GenerateReport(pInitialDate As %Library.String, pFinalDate As %Library.String) As ecommerce.model.SalesReport [ Language = python ]
 {
-	Set initialDate = pInitialDate
-	Set finalDate = pFinalDate
+	import iris
 
-	Set spContextServ = ##Class(%SQL.Statement).%ExecDirect(,"CALL ecommerce_data.Sales_CalculateRevenue(?, ?)", initialDate, finalDate)
+	initial_date = pInitialDate
+	final_date = pFinalDate
 
-	If (spContextServ.%Next())
-	{
-		Set report = ##class(ecommerce.model.SalesReport).%New()
-		Set report.InitialDate = initialDate
-		Set report.FinalDate = finalDate
-		Set report.RawValue = spContextServ.%Get("RawValue")
-		Set report.Discount = spContextServ.%Get("Discount")
-		Set report.LiquidRevenue = spContextServ.%Get("LiquidRevenue")
-		Set report.SalesQuantity = spContextServ.%Get("SalesQuantity")
-		Set report.ICMS = spContextServ.%Get("ICMS")
-		Set report.ISS = spContextServ.%Get("ISS")
-		Return report
-	}
+	Statement = iris._SQL.Statement
+	statement = Statement._ExecDirect("", "CALL ecommerce_data.Sales_CalculateRevenue(?, ?)", initial_date, final_date)
+
+	if statement._Next():
+		SalesReport = iris.ecommerce.model.SalesReport
+		report = SalesReport._New()
+		report.InitialDate = initial_date
+		report.FinalDate = final_date
+		report.RawValue = statement._Get("RawValue")
+		report.Discount = statement._Get("Discount")
+		report.LiquidRevenue = statement._Get("LiquidRevenue")
+		report.SalesQuantity = statement._Get("SalesQuantity")
+		report.ICMS = statement._Get("ICMS")
+		report.ISS = statement._Get("ISS")
+		return report
 }
 
 Storage Default
